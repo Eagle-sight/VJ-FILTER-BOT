@@ -128,37 +128,29 @@ YEARS = ["1900", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998",
 
 
 # Online Stream and Download
-PORT = int(environ.get('PORT', 8080))
-NO_PORT = bool(environ.get('NO_PORT', False))
-APP_NAME = None
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = environ.get('APP_NAME')
-else:
-    ON_HEROKU = False
-BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
-FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
-URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else \
-    "http://{}:{}/".format(FQDN, PORT)
-SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
-WORKERS = int(environ.get('WORKERS', '4'))
-SESSION_NAME = str(environ.get('SESSION_NAME', 'LazyBot'))
-MULTI_CLIENT = True
-name = str(environ.get('name', 'LazyPrincess'))
-PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
-if 'DYNO' in environ:
-    ON_HEROKU = True
-    APP_NAME = str(getenv('APP_NAME'))
-
-else:
-    ON_HEROKU = False
-HAS_SSL=bool(getenv('HAS_SSL',False))
-if HAS_SSL:
-    URL = "https://{}/".format(FQDN)
-else:
-    URL = "http://{}/".format(FQDN)
-BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001987654567")).split())) 
-OWNER_USERNAME = "DH_Networks"
+class Var(object):
+    MULTI_CLIENT = False
+    name = str(getenv('name', 'filetolinkvjbot'))
+    SLEEP_THRESHOLD = int(getenv('SLEEP_THRESHOLD', '60'))
+    WORKERS = int(getenv('WORKERS', '4'))
+    BIN_CHANNEL = int(getenv('BIN_CHANNEL', '-1002118023638'))
+    PORT = int(getenv('PORT', 8080))
+    BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
+    PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
+    NO_PORT = bool(getenv('NO_PORT', False))
+    APP_NAME = None
+    if 'DYNO' in environ:
+        ON_HEROKU = True
+        APP_NAME = str(getenv('APP_NAME'))
+    
+    else:
+        ON_HEROKU = False
+    FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
+    HAS_SSL=bool(getenv('HAS_SSL',False))
+    if HAS_SSL:
+        URL = "https://identical-cordula-technicaltests-57b42fce.koyeb.app/"
+    else:
+        URL = "https://identical-cordula-technicaltests-57b42fce.koyeb.app/"
 
 # Rename Info : If True Then Bot Rename File Else Not
 RENAME_MODE = bool(environ.get('RENAME_MODE', False)) # Set True or False
